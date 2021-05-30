@@ -10,15 +10,25 @@ export default new Router()
   .match('/', shoppingFlowRouteHandler)
 
   // PLP page
-  .match('/collections/:path*', shoppingFlowRouteHandler)
+  .match('/b/:path*', shoppingFlowRouteHandler)
 
   // PDP page
-  .match('/products/:path*', shoppingFlowRouteHandler)
+  .match('/p/:path*', shoppingFlowRouteHandler)
 
   // example route for cacheable assets:
-  .match('/images/:path*', ({ cache, proxy }) => {
+  // .match('/images/:path*', ({ cache, proxy }) => {
+  //   cache(CACHE_ASSETS)
+  //   return proxy('origin')
+  // })
+
+  .match('/l0-images/:path*', ({ proxy, cache }) => {
     cache(CACHE_ASSETS)
-    return proxy('origin')
+    return proxy('images', { path: ':path*' })
+  })
+
+  .match('/l0-thdstatic/:path*', ({ proxy, cache }) => {
+    cache(CACHE_ASSETS)
+    return proxy('thdstaticImages', { path: ':path*' })
   })
 
   .match('/service-worker.js', ({ serviceWorker }) => serviceWorker('dist/service-worker.js'))

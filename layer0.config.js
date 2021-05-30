@@ -3,8 +3,16 @@ module.exports = {
   connector: '@layer0/starter',
   backends: {
     origin: {
-      domainOrIp: 'www.layer0.co',
-      hostHeader: 'www.layer0.co',
+      domainOrIp: 'www.homedepot.com',
+      hostHeader: 'www.homedepot.com',
+    },
+    images: {
+      domainOrIp: 'images.homedepot-static.com',
+      hostHeader: 'images.homedepot-static.com',
+    },
+    thdstaticImages: {
+      domainOrIp: 'images.thdstatic.com',
+      hostHeader: 'images.thdstatic.com',
     },
   },
 }
