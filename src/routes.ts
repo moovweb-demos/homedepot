@@ -15,6 +15,10 @@ export default new Router()
   // PDP page
   .match('/p/:path*', shoppingFlowRouteHandler)
 
+  // CSS Mobile page
+  .match('/content/css/mobile/mobile-main.css', shoppingFlowRouteHandler)
+
+
   // example route for cacheable assets:
   // .match('/images/:path*', ({ cache, proxy }) => {
   //   cache(CACHE_ASSETS)
@@ -30,6 +34,18 @@ export default new Router()
     cache(CACHE_ASSETS)
     return proxy('thdstaticImages', { path: ':path*' })
   })
+
+  .match('/l0-contentgrid/:path*', ({ proxy, cache }) => {
+    cache(CACHE_ASSETS)
+    return proxy('contentgrid', { path: ':path*' })
+  })
+
+  .match('/l0-assets/:path*', ({ proxy, cache }) => {
+    cache(CACHE_ASSETS)
+    return proxy('assets', { path: ':path*' })
+  })
+
+
 
   .match('/service-worker.js', ({ serviceWorker }) => serviceWorker('dist/service-worker.js'))
   .match('/main.js', ({ serveStatic, cache }) => {

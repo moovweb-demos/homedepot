@@ -9,10 +9,11 @@ new Prefetcher({
   plugins: [
     new DeepFetchPlugin([
       {
-        selector: 'img.product-main-image',
+        selector: '.content_image img.stretchy.stretchy',
         maxMatches: 1,
         attribute: 'src',
         as: 'image',
+        callback: deepFetchCoverImages,
       },
       {
         selector: 'img#mainImage',
@@ -37,22 +38,27 @@ new Prefetcher({
 ///////////////////////////////////////////////
 // Callback function for PDP image selector //
 function deepFetchPDPImages({ $el, el, $ }: DeepFetchCallbackParam) {
-
   const src = $el.attr('src') || '';
   console.log("[][]][][[][]][][][][][[]][[][][]\nPrefetching PDP: "+src+"\n");
   prefetch(src, 'image');
-
 }
 
 ///////////////////////////////////////////////
 // Callback function for PLP image selector //
 function deepFetchPLPImages({ $el, el, $ }: DeepFetchCallbackParam) {
-
   const src = $el.attr('src') || '';
   console.log("[][]][][[][]][][][][][[]][[][][]\nPrefetching PLP: "+src+"\n");
   prefetch(src, 'image');
-
 }
+
+//////////////////////////////////////////////
+// Callback function for PLP image selector //
+function deepFetchCoverImages({ $el, el, $ }: DeepFetchCallbackParam) {
+  const src = $el.attr('src') || '';
+  console.log("[][]][][[][]][][][][][[]][[][][]\nPrefetching Cover: "+src+"\n");
+  prefetch(src, 'image');
+}
+
 
 // function logPrefetchedContent({$el}) { // for testing
 //   // console.log("[][]][][[][]][][][][][[]][[][][]")

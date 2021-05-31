@@ -39,6 +39,13 @@ export default function transform(response: Response, request: Request) {
       $(el).attr('src', newUrl)
     })
 
+    // Fixing CORS image issues by proxing images to Layer0 server | images.homedepot-static.com
+    $('img[src*="https://contentgrid.thdstatic.com"]').map((i, el) => {
+      var url = $(el).attr('src') || '';
+      var newUrl = url.replace('https://contentgrid.thdstatic.com', '/l0-contentgrid');
+      $(el).attr('src', newUrl)
+    })
+
     // Relativise links
     $('a[href]').map((i, el) => {
       var link = $(el).attr('href') || '';
@@ -51,5 +58,6 @@ export default function transform(response: Response, request: Request) {
 
     response.body = $.html()
                       .replace(/https:\/\/www\.homedepot\.com\//g, '/')
+                      .replace(/https:\/\/assets\.homedepot-static\.com\//g, '/l0-assets/')
   }
 }
