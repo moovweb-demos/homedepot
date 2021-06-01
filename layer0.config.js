@@ -14,6 +14,10 @@ module.exports = {
       domainOrIp: 'images.thdstatic.com',
       hostHeader: 'images.thdstatic.com',
     },
+    thdstaticAssets: {
+      domainOrIp: 'assets.thdstatic.com',
+      hostHeader: 'assets.thdstatic.com',
+    },
     contentgrid: {
       domainOrIp: 'contentgrid.thdstatic.com',
       hostHeader: 'contentgrid.thdstatic.com',

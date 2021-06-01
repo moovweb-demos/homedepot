@@ -18,8 +18,6 @@ export default function transform(response: Response, request: Request) {
       <script src="/main.js" defer="defer"></script>
     `)
 
-    $('*').attr('layer0', 'layer0')
-
     // $('script[src]').map((i, el) => {
     //   var link = $(el).attr('src') || '';
     //   $(el).attr('src', link.replace(/.+\.com\//, '/'));
@@ -56,8 +54,15 @@ export default function transform(response: Response, request: Request) {
       }
     })
 
+    $('script[src^="https://assets.thdstatic.com/react-components/"]').map((i, el) => {
+      var url = $(el).attr('src') || '';
+      var newUrl = url.replace('https://assets.thdstatic.com', '/l0-thdstaticassets');
+      $(el).attr('src', newUrl)
+    })
+
     response.body = $.html()
                       .replace(/https:\/\/www\.homedepot\.com\//g, '/')
                       .replace(/https:\/\/assets\.homedepot-static\.com\//g, '/l0-assets/')
+
   }
 }

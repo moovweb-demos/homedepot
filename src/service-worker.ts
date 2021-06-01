@@ -29,6 +29,13 @@ new Prefetcher({
         as: 'image',
         callback: deepFetchPLPImages,
       },
+      {
+        selector: 'script[src^="/l0-thdstaticassets"]',
+        maxMatches: 4,
+        attribute: 'src',
+        as: 'script',
+      },
+
     ]),
   ],
 })

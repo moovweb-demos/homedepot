@@ -19,6 +19,8 @@ export default new Router()
   .match('/content/css/mobile/mobile-main.css', shoppingFlowRouteHandler)
 
 
+  // https://assets.thdstatic.com/react-components/buybelt/1.0.41/main.js
+
   // example route for cacheable assets:
   // .match('/images/:path*', ({ cache, proxy }) => {
   //   cache(CACHE_ASSETS)
@@ -34,6 +36,13 @@ export default new Router()
     cache(CACHE_ASSETS)
     return proxy('thdstaticImages', { path: ':path*' })
   })
+
+  .match('/l0-thdstaticassets/:path*', ({ proxy, cache }) => {
+    cache(CACHE_ASSETS)
+    return proxy('thdstaticAssets', { path: ':path*' })
+  })
+
+
 
   .match('/l0-contentgrid/:path*', ({ proxy, cache }) => {
     cache(CACHE_ASSETS)
